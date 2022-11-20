@@ -1,7 +1,13 @@
 # Memorize App
 
 ## Playstore
+
 This application can be downloaded from [here](https://play.google.com/store/apps/details?id=org.greenelite.memorize)
+
+## References
+
+To export the app for android platform, follow the steps given in:
+https://docs.godotengine.org/en/stable/tutorials/export/exporting_for_android.html
 
 ## Sample Screenshots
 
