@@ -1,19 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scenes/Box/ModulatingBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Levels/Level1.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Fonts/Ubuntu/Ubuntu-BoldItalic.ttf" type="DynamicFontData" id=3]
 
-[sub_resource type="StreamTexture" id=1]
-flags = 4
-load_path = "res://.import/Simple.png-6721b93707f3703692a03346346b688b.stex"
-
-[sub_resource type="StreamTexture" id=2]
-flags = 4
-load_path = "res://.import/Simple.png-6721b93707f3703692a03346346b688b.stex"
-
-[sub_resource type="StreamTexture" id=3]
-flags = 4
-load_path = "res://.import/Simple.png-6721b93707f3703692a03346346b688b.stex"
+[sub_resource type="DynamicFont" id=1]
+size = 90
+outline_color = Color( 0.902136, 0.669264, 0.238467, 1 )
+font_data = ExtResource( 3 )
 
 [node name="Level1" type="Control"]
 anchor_right = 1.0
@@ -22,48 +15,45 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+GCPath = "Control/GridContainer"
+StartMsgPath = "StartMsg"
 
-[node name="TopLeft" parent="." groups=[
-"Box",
-] instance=ExtResource( 1 )]
-margin_right = 200.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 200, 200 )
-
-[node name="BottomLeft" parent="." groups=[
-"Box",
-] instance=ExtResource( 1 )]
-modulate = Color( 0.764706, 0.0509804, 0.0509804, 1 )
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_top = -990.0
-margin_right = 200.0
-margin_bottom = -790.0
-rect_min_size = Vector2( 200, 200 )
-texture_normal = SubResource( 1 )
-texture_pressed = SubResource( 1 )
-
-[node name="TopRight" parent="." groups=[
-"Box",
-] instance=ExtResource( 1 )]
-margin_left = 600.0
-margin_right = 800.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 200, 200 )
-texture_normal = SubResource( 2 )
-texture_pressed = SubResource( 2 )
-
-[node name="BottomRight" parent="." groups=[
-"Box",
-] instance=ExtResource( 1 )]
-anchor_left = 1.0
-anchor_top = 1.0
+[node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -600.0
-margin_top = -990.0
-margin_right = -400.0
-margin_bottom = -790.0
-rect_min_size = Vector2( 200, 200 )
-texture_normal = SubResource( 3 )
-texture_pressed = SubResource( 3 )
+color = Color( 1, 0.866667, 0.345098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="."]
+margin_right = 1200.0
+margin_bottom = 1980.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_constants/vseparation = 5
+custom_constants/hseparation = 5
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartMsg" type="Label" parent="."]
+self_modulate = Color( 0.545098, 0.537255, 0.00784314, 0.568627 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "TAP TO START"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -1,0 +1,88 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/GUI/End/Retry.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Fonts/Ubuntu/Ubuntu-BoldItalic.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/Fonts/Game/UbintuItalic60.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Scenes/GUI/Start/Back.tscn" type="PackedScene" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 90
+font_data = ExtResource( 2 )
+
+[node name="Retry" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Color" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.219608, 0.0784314, 0.376471, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" parent="Color" instance=ExtResource( 4 )]
+margin_left = -300.0
+margin_right = 0.0
+margin_bottom = 250.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Color"]
+modulate = Color( 1, 0.741176, 0.411765, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -436.0
+margin_top = -199.0
+margin_right = 436.0
+margin_bottom = 199.0
+custom_constants/separation = 80
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Congratulations" type="Label" parent="Color/VBoxContainer"]
+margin_right = 872.0
+margin_bottom = 102.0
+size_flags_vertical = 7
+custom_fonts/font = SubResource( 1 )
+text = "Congratulations"
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tries" type="Label" parent="Color/VBoxContainer"]
+margin_top = 182.0
+margin_right = 872.0
+margin_bottom = 250.0
+custom_fonts/font = ExtResource( 3 )
+text = "0"
+align = 1
+
+[node name="Time" type="Label" parent="Color/VBoxContainer"]
+margin_top = 330.0
+margin_right = 872.0
+margin_bottom = 398.0
+custom_fonts/font = ExtResource( 3 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Life" type="Label" parent="Color/VBoxContainer"]
+margin_top = 478.0
+margin_right = 872.0
+margin_bottom = 546.0
+custom_fonts/font = ExtResource( 3 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

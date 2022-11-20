@@ -1,42 +1,256 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/GUI/Main/GUI.gd" type="Script" id=1]
 [ext_resource path="res://admob-lib/admob.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Simple.png" type="Texture" id=3]
-[ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Levels/Level1.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Icons/Charge.png" type="Texture" id=3]
+[ext_resource path="res://Assets/SimpleShapes/SmoothSquare.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/Levels/Level1.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Fonts/Game/Ubuntu60.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Scenes/GUI/Start/LeadtoPause.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/GUI/Start/Pause.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Icons/life.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Fonts/Ubuntu/Ubuntu-BoldItalic.ttf" type="DynamicFontData" id=11]
+[ext_resource path="res://Assets/Fonts/Game/Ubuntu35.tres" type="DynamicFont" id=12]
+
+[sub_resource type="DynamicFont" id=1]
+size = 90
+outline_color = Color( 0.902136, 0.669264, 0.238467, 1 )
+font_data = ExtResource( 11 )
+
+[sub_resource type="Theme" id=2]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.219608, 0.0784314, 0.376471, 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 35
+font_data = ExtResource( 11 )
 
 [node name="GUI" type="Node2D"]
 script = ExtResource( 1 )
+levelBase_path = NodePath("LevelBase")
+touchButtonPath = "Control/Panel/ADDS"
 
 [node name="AdMob" type="Node2D" parent="."]
 script = ExtResource( 2 )
-banner_id = "ca-app-pub-3940256099942544/6300978111"
+is_real = true
+banner_on_top = false
+banner_id = "ca-app-pub-9537657407579805/5562514023"
+rewarded_id = "ca-app-pub-9537657407579805/9849421005"
 is_personalized = false
 
-[node name="Player" parent="." instance=ExtResource( 4 )]
-
-[node name="Control" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="LevelBase" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_right = 1080.0
+margin_bottom = 1920.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ADDS" type="TouchScreenButton" parent="Control"]
-modulate = Color( 0.945098, 0.968627, 0.580392, 1 )
-position = Vector2( 435.578, 950.352 )
-scale = Vector2( 61.9839, 44.3628 )
-normal = ExtResource( 3 )
-pressed = ExtResource( 3 )
+[node name="Level" type="Control" parent="LevelBase"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+ScorePath = "Control/Panel/HBoxLife/Life"
+GCPath = "Control/GridContainer"
+StartMsgPath = "StartMsg"
+ChargeMsgPath = "Control/Panel/ADDS/VBoxCharge/Thunder/Charge"
 
-[node name="Level1" parent="." instance=ExtResource( 5 )]
-anchor_right = 0.0
+[node name="ColorRect" type="ColorRect" parent="LevelBase/Level"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 0.941176, 0.713726, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="LevelBase/Level"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -540.0
+margin_top = -1920.0
+margin_right = 540.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="LevelBase/Level/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 300.0
+margin_right = -20.0
+margin_bottom = -70.0
+rect_min_size = Vector2( 600, 600 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/vseparation = 5
+custom_constants/hseparation = 5
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartMsg" type="Label" parent="LevelBase/Level"]
+self_modulate = Color( 0.545098, 0.537255, 0.00784314, 0.568627 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "TAP TO START"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="LevelBase/Level"]
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Control"]
+anchor_right = 1.0
+margin_right = 1080.0
+margin_bottom = 230.0
+rect_min_size = Vector2( 0, 230 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource( 2 )
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxLife" type="HBoxContainer" parent="Control/Panel"]
+anchor_left = 0.043
+anchor_top = 0.201
+anchor_right = 0.132
+anchor_bottom = 0.783
+margin_left = -0.880001
+margin_top = -0.23
+margin_right = -0.119995
+margin_bottom = 1.90999
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Heart" type="TextureRect" parent="Control/Panel/HBoxLife"]
+margin_right = 80.0
+margin_bottom = 135.0
+texture = ExtResource( 10 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Life" type="Label" parent="Control/Panel/HBoxLife"]
+self_modulate = Color( 1, 0.741176, 0.411765, 1 )
+margin_left = 84.0
+margin_top = 33.0
+margin_right = 118.0
+margin_bottom = 101.0
+custom_fonts/font = ExtResource( 6 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ADDS" type="TextureButton" parent="Control/Panel"]
+modulate = Color( 0.945098, 0.968627, 0.580392, 1 )
+self_modulate = Color( 0.219608, 0.0784314, 0.376471, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -200.0
+margin_top = 65.0
+margin_right = 200.0
+margin_bottom = 165.0
+rect_min_size = Vector2( 200, 100 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxCharge" type="VBoxContainer" parent="Control/Panel/ADDS"]
+margin_left = 20.0
+margin_top = 6.0
+margin_right = 120.0
+margin_bottom = 103.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Thunder" type="TextureRect" parent="Control/Panel/ADDS/VBoxCharge"]
+margin_right = 100.0
+margin_bottom = 81.0
+texture = ExtResource( 3 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Charge" type="Label" parent="Control/Panel/ADDS/VBoxCharge/Thunder"]
+self_modulate = Color( 1, 0.741176, 0.411765, 1 )
+anchor_left = 0.532
+anchor_top = 0.074
+anchor_right = 1.0
+anchor_bottom = 0.919
+margin_left = 2.94981
+margin_top = 43.385
+margin_right = 6.14981
+margin_bottom = 14.94
+custom_fonts/font = ExtResource( 12 )
+text = "3"
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="show" type="Label" parent="Control/Panel/ADDS"]
+self_modulate = Color( 1, 0.741176, 0.411765, 1 )
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -256.0
+margin_top = -18.0
+margin_right = -30.0
+margin_bottom = 22.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 4 )
+text = "Show"
+align = 2
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pause" parent="Control/Panel" instance=ExtResource( 7 )]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -60.0
+margin_right = 10.0
+margin_bottom = 125.0
+stretch_mode = 3
+
+[node name="Pause" parent="." instance=ExtResource( 8 )]
+visible = false
 
 [connection signal="banner_failed_to_load" from="AdMob" to="." method="_on_AdMob_banner_failed_to_load"]
 [connection signal="banner_loaded" from="AdMob" to="." method="_on_AdMob_banner_loaded"]
 [connection signal="rewarded" from="AdMob" to="." method="_on_AdMob_rewarded"]
-[connection signal="pressed" from="Control/ADDS" to="." method="_on_ADDS_pressed"]
-[connection signal="released" from="Control/ADDS" to="." method="_on_ADDS_released"]
+[connection signal="pressed" from="Control/Panel/ADDS" to="." method="_on_ADDS_pressed"]
