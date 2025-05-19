@@ -1,8 +1,6 @@
 # Memorize App
 
-## Playstore
 
-This application can be downloaded from [here](https://play.google.com/store/apps/details?id=org.greenelite.memorize)
 
 ## References
 
