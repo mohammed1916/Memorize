@@ -1,5 +1,6 @@
 # Memorize App
 
+Refer dev Branch for Android build and Parallel updates and have Keystore inside ```Credentials``` folder.
 
 
 ## References
